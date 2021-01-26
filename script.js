@@ -8,29 +8,20 @@ var currentHour = (currentHour);
 var now = (dailyHour);
 var dailyHour = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm"];
 
-console.log(currentHour)
-console.log(now)
-
-
 $(document).ready(function () {
     //Set the current date and day of the week in the header
-$("#currentDay").text(currentDate);
- $("#Container").addClass("time-block");
+    $("#currentDay").text(currentDate);
+    $("#Container").addClass("time-block");
 
- var saved = JSON.parse(localStorage.getItem("allstoredItems"));
- console.log(saved)
-
- 
 });
-
 
 for (var i = 0; i < 10; i++) {
     var timeRanges = $("<div>");
     timeRanges.addClass("time-ranges");
     timeRanges.addClass("row");
 
-    var  currentTime= $("<p>");
-    currentTime.addClass("todayHours");
+    var currentTime = $("<p>");
+    currentTime.addClass("dailyHour");
     currentTime.addClass("col-1 pt-4");
     currentTime.text(dailyHour[i]);
 
@@ -45,7 +36,7 @@ for (var i = 0; i < 10; i++) {
     } else {
         textDescription.addClass("future");
     }
-//Add click event to save buttons
+    //Add click event to save buttons
 
     var saveButton = $("<button>");
     saveButton.addClass("saveBtn");
@@ -60,14 +51,16 @@ for (var i = 0; i < 10; i++) {
 //create array to hold all stored data
 var allstoredItems = [];
 
-   
-  var storedItems = {}
-  
-  storedItems.thetime =timeRanges
-  storedItems.thevalue =textDescription
+var storedItems = {}
 
-  allstoredItems.push(storedItems);
-  
-  //save to local storage
+var saved = JSON.parse(localStorage.getItem("allstoredItems"));
+console.log(saved)
+
+storedItems.thetime = timeRanges
+storedItems.thevalue = textDescription
+
+allstoredItems.push(storedItems);
+
+//save to local storage
 localStorage.setItem("allstoredItems", JSON.stringify(allstoredItems));
 
