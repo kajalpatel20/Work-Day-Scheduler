@@ -2,16 +2,16 @@
 
 var DateTime = luxon.DateTime;
 
-var currentDate = DateTime.local();
-var currentDate = DateTime.local().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' }); //=> 'Tuesday, January 26
-$("currentDay").text(currentDate);
-var currentHour = currentDate.hour; 
+var currentDate = DateTime.local().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' }); 
 
-var now = (dailyHour);
+var today = DateTime.local()
+console.log(today)
+var now = today.hour;
+console.log(now)
 var dailyHour = ["9-am", "10-am", "11-am", "12-pm", "1-pm", "2-pm", "3-pm", "4-pm", "5-pm", "6-pm"];
 var miliTime =["9","10","11","12","13","14","15","16","17","18"]
 $(document).ready(function () {
-    //Set the current date and day of the week in the header
+    //Set the current date and day of the week
     $("#currentDay").text(currentDate);
     $("#Container").addClass("time-block");
 
@@ -43,6 +43,10 @@ for (var i = 0; i < 10; i++) {
     timeRanges.append(textDescription);
     timeRanges.append(saveButton);
     $(".container").append(timeRanges);
+    var key = dailyHour[i];
+    var data = localStorage.getItem(key);
+    console.log(data)
+    textDescription.val(data);
 }
 
 function updateRow(){
@@ -51,15 +55,15 @@ function updateRow(){
         var row = $(this).children("textarea").attr("class").split(" ")[1];
       
         console.log(parseInt(row))
-        if(row < DateTime){
+        if(row < now){
             console.log("past")
             $(this).addClass("past");
         }
-        if(row > DateTime){
+        if(row > now){
             console.log("future")
             $(this).addClass("future");
         }
-        if(row === DateTime){
+        if(row == now){
             console.log("present")
             $(this).addClass("present");
         }
@@ -68,20 +72,20 @@ function updateRow(){
 }
 updateRow();
 //create array to hold all stored data
-var allstoredItems = [];
+// var allstoredItems = [];
 
-var storedItems = {}
+// var storedItems = {}
 
-var saved = JSON.parse(localStorage.getItem("allstoredItems"));
-console.log(saved)
+// var saved = JSON.parse(localStorage.getItem("allstoredItems"));
+// console.log(saved)
 
-storedItems.thetime = timeRanges
-storedItems.thevalue = textDescription
+// storedItems.thetime = timeRanges
+// storedItems.thevalue = textDescription
 
-allstoredItems.push(storedItems);
+// allstoredItems.push(storedItems);
 
-//save to local storage
-localStorage.setItem("allstoredItems", JSON.stringify(allstoredItems));
+// //save to local storage
+// localStorage.setItem("allstoredItems", JSON.stringify(allstoredItems));
 
 $(".saveBtn").on("click", function(){
     //console.log("we works", $(this).siblings(".description").val())
