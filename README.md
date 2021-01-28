@@ -32,8 +32,6 @@ THEN the saved events persist
 
 The following animation demonstrates the application functionality:
 
-![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
-
 ![Work-Day-Scheduler](Work-Day-Scheduler/assets/Screen Shot 2021-01-27 at 8.23.58 PM.png)
 
 
